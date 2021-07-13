@@ -17,18 +17,19 @@ namespace API.Controllers
         {
             _context = context;
         }
+        
         [HttpGet]
-
+        [Route("UserGet")]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users =  await _context.Users.ToListAsync();
-            return users;
+            return await _context.Users.ToListAsync();
+            
         }
         [HttpGet("{id}")]
 
         public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
-            var users =await _context.Users.FindAsync(id);
+            var users = await _context.Users.FindAsync(id);
             return users;
         }
 
