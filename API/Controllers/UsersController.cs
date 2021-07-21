@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
         public UsersController(DataContext context)

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Extensions;
+using API.Interfaces;
+using API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,10 +33,14 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             //Add Connection String
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
-            });
+            //services.AddScoped<ITokenService,TokenService>();
+            //services.AddDbContext<DataContext>(options =>
+            //{
+            //    options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
+            //});
+
+            services.AddApplicationServices(_config);
+            services.AddIdentityExtesions(_config);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
